@@ -2,6 +2,7 @@ package com.projet.student;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.projet.address.Address;
 import com.projet.subject.Subject;
 
@@ -35,6 +36,7 @@ private Address address;
 		joinColumns = @JoinColumn(name = "std_id", referencedColumnName = "id"),
 		inverseJoinColumns = @JoinColumn(name = "sub_id", referencedColumnName = "id")
 		)
+@JsonManagedReference
 private List<Subject> subjects;
 
 

@@ -2,6 +2,7 @@ package com.projet.subject;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.projet.chapter.Chapter;
 import com.projet.student.Student;
 
@@ -24,6 +25,7 @@ private Integer id;
 private String name;
 
 @ManyToMany(mappedBy = "subjects")
+@JsonBackReference
 private List<Student> students;
 
 @OneToMany(mappedBy = "subject")
