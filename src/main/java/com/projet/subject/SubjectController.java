@@ -1,4 +1,4 @@
-package com.projet.student;
+package com.projet.subject;
 
 import java.util.List;
 
@@ -8,34 +8,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("{/subjects}")
 @RequiredArgsConstructor
-public class StudentController {
+public class SubjectController {
 
-private final StudentService service;
-
-
+private final SubjectService service;
+	
+	
 @PostMapping
-public void save (@RequestBody StudentRequest student) {
-	service.save(student);
+public void save (@RequestBody SubjectRequest subject) {
+	service.save(subject);
 }
-
-
-@GetMapping("/{student-id}")
-public StudentResponse findById(@PathVariable ("student-id") Integer studentId) {
-return service.findById(studentId);
+	
+@GetMapping("/{subjectId}")
+public SubjectResponse findById(@PathVariable  Integer subjectId) {
+return service.findById(subjectId);
 }	
 
-
 @GetMapping
-public List<StudentResponse> findAll(){
+public List<SubjectResponse> findAll(){
 	return service.findAll();
 }
 
-	
-	
+
+
 }

@@ -1,12 +1,9 @@
 package com.projet.subject;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
-
-import com.projet.student.Student;
-import com.projet.student.StudentResponse;
-
 import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
@@ -31,14 +28,15 @@ private final SubjectMapper mapper;
 
 	@Override
 	public List<SubjectResponse> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.subjectRepository.findAll()
+				.stream()
+				.map(mapper::toSubjectDto)
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-
+		this.subjectRepository.deleteById(id);
 	}
 
 }
