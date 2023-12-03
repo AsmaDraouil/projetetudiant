@@ -128,10 +128,13 @@ public void should_throw_StudentAssignmentException_when_student_is_assigned_to_
 
 
 @Test
-void should_throw_StudentAssignmentException_when_student_is_already_assigned() {
+void should_throw_StudentAssignmentException_when_student_is_already_assigned_to_this_subject() {
 	Integer subjectId = 1;
     Integer studentId = 2;
+    Subject subject = new Subject();
     
+    var exp = Assertions.assertThrows(StudentAssignmentException.class, () -> subjectService.assignSubjectToStudent(subjectId, studentId));
+    Assertions.assertEquals(exp.getMessage(), "Student is already assigned");
 }
 
 @Test
