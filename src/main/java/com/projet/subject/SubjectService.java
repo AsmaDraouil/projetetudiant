@@ -7,4 +7,6 @@ public interface SubjectService {
 	SubjectResponse findById(Integer id);
 	List<SubjectResponse> findAll();
 	void deleteById(Integer id);
+	
+	void assignSubjectToStudent(Integer subjectId, Integer studentId);
 }
