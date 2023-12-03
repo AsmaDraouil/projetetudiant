@@ -6,15 +6,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class SubjectMapper {
 	public SubjectResponse toSubjectDto(Subject sub) {
+		
 		return SubjectResponse.builder()
 				.name(sub.getName())
 				.build();
 	}	
 		
 	public Subject toSubject(SubjectRequest sub) {
-		Subject subject = new Subject();
-		subject.setId(sub.getId());
-		subject.setName(sub.getName());	
-		return subject;
+		if(sub==null)
+			return Subject.builder().build();
+		  return Subject.builder()
+	                .id(sub.getId())
+	                .name(sub.getName())
+	                .build();
 	}
 }

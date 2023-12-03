@@ -19,6 +19,11 @@ public void should_successfully_transform_subject_request_to_Subject() {
     Assertions.assertNull(subject.getStudents());
     Assertions.assertNull(subject.getChapters());
 }
+
+public void should_successfully_transform_null_subject_request_to_Subject() {
+    Subject subject = mapper.toSubject(null);
+    Assertions.assertNotNull(subject);
+}
 	
 	
 	
