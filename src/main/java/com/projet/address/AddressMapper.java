@@ -2,6 +2,8 @@ package com.projet.address;
 
 import org.springframework.stereotype.Service;
 
+import com.projet.student.Student;
+
 @Service
 public class AddressMapper {
 	public AddressResponse toAddressDto(Address address) {
@@ -10,10 +12,14 @@ public class AddressMapper {
 				.build();
 	}	
 		
-	public Address toAddress(AddressRequest a) {
+	public Address toAddress(AddressRequest addressRequest) {
 		Address address = new Address();
-		address.setId(a.getId());
-		address.setHomeAddress(a.getHomeAddress());
+		address.setId(addressRequest.getId());
+		address.setHomeAddress(addressRequest.getHomeAddress());
+		
+		Student student = new Student();
+		student.setId(addressRequest.getStudentId());
+		address.setStudent(student);
 		return address;
 }
 }
