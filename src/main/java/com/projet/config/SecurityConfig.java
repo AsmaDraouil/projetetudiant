@@ -5,6 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -13,11 +19,8 @@ public class SecurityConfig {
 @Bean
 public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 	http.authorizeHttpRequests(req ->
-	req.requestMatchers(HttpMethod.GET,"/subjects/**")
-	.permitAll()
-	.requestMatchers(HttpMethod.GET, "/students/**")
-	.permitAll()
-	.anyRequest()
+
+	req.anyRequest()
 	.authenticated()
 			)
 	.httpBasic(Customizer.withDefaults());
@@ -25,5 +28,27 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
 	return http.build();
 	
 }
+@Bean
+public UserDetailsService userDetailsService() {
+	return new UserDetailsService() {
+		
+		@Override
+		public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+			if ("asma".equals(username)) {
+				return User.withUsername("asma").password("1234").roles("USER").build();
+			}
+				
+			throw new UsernameNotFoundException("user not found");
+		}
+	};
+}
 	
+
+
+@Bean
+public PasswordEncoder passwordEncoder() {
+	return NoOpPasswordEncoder.getInstance();
+}
+
+
 }
