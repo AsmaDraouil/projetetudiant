@@ -8,6 +8,7 @@ import com.projet.student.Student;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
@@ -25,7 +26,7 @@ import lombok.Setter;
 @Builder
 public class Subject {
 @Id
-@GeneratedValue
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 private Integer id;
 
 private String name;

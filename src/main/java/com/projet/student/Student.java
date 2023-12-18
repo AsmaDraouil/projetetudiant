@@ -8,6 +8,7 @@ import com.projet.subject.Subject;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -21,7 +22,7 @@ import lombok.Setter;
 @Getter
 public class Student {
 @Id
-@GeneratedValue
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 private Integer id;
 private String firstname;
 private String lastname;
