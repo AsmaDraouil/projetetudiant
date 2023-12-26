@@ -13,6 +13,7 @@ public Student toStudent(AuthRequest s) {
 	student.setLastname(s.getLastname());
 	student.setFirstname(s.getPassword());
 	student.setLastname(s.getEmail());
+	student.setEnabled(true);
 	return student;
 }
 	
